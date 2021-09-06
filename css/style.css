@@ -13,16 +13,16 @@ body {
     height: 100%;
 }
 
-
-#main-header{
+#main-header {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
     height: 150px;
 }
-#main-h1{
-    font-family: "Roboto",sans-serif;
+
+#main-h1 {
+    font-family: "Roboto", sans-serif;
     font-size: 45px;
     font-weight: bold;
     font-style: normal;
@@ -46,7 +46,7 @@ body {
     margin-bottom: 15px;
 }
 
-.reg-section-content {
+.add-section-content {
     width: 40%;
     margin: auto;
 }
@@ -55,42 +55,92 @@ body {
     margin-top: 20px;
 }
 
-#login-button {
+#main-table-div {
+    width: 80%;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.sortable {
+    cursor: pointer;
+    transition: background-color 300ms;
+}
+
+.sortable:hover {
+    background-color: rgb(153, 193, 255) !important;
+}
+
+.sortable > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sort-arrows{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3px;
+}
+.sort-arrows img{
+    visibility: visible;
+    filter: invert(94%) sepia(39%) saturate(0%) hue-rotate(358deg) brightness(112%) contrast(100%);
+}
+
+th {
+    white-space: nowrap;
+}
+
+.info {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 38px;
-    height: 38px;
+    position: fixed;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal;
+    height: 30px;
+    width: 100%;
+    top: -100px;
+    transition: top 400ms;
+    text-align: center;
+    line-height: normal;
+    padding-left: 10px;
+    padding-right: 10px;
+    z-index: 57;
 }
 
-#login-image {
-    transition: height 300ms, width 300ms;
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
 }
 
-#login-button:hover #login-image {
-    width: 36px;
-    height: 36px;
+.failed {
+    color: #D8000C;
+    background-color: #FFD2D2;
 }
 
 @media (max-width: 1024px) {
-    .reg-section-content {
+    .add-section-content {
         width: 60%;
         margin: auto;
     }
 }
 
 @media (max-width: 768px) {
-    .reg-section-content {
+    .add-section-content {
         width: 90%;
         margin: auto;
+    }
+    #main-table-div{
+        width: 90%;
     }
 }
 
 @media (max-width: 576px) {
-    #edukan {
-        width: 300px;
-    }
-
     #main-header {
         height: 150px;
     }

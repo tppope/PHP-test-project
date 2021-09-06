@@ -26,19 +26,25 @@
 
 </head>
 <body>
+<div id="add-failed" class="info failed">
+    <span>Najprv sa musíte do testu prihlásiť.</span>
+</div>
+<div id="add-success" class="info success">
+    <span>Váš test bol úspešne odoslaný.</span>
+</div>
 <header id="main-header">
     <h1 id="main-h1">
         PHP testovací projekt
     </h1>
 </header>
 <section>
-    <header id="section-header" class="reg-section-content">
+    <header id="section-header" class="add-section-content">
         <h2 class="section-h2">
            Knižnica
         </h2>
     </header>
-    <div id="div-form" class="reg-section-content">
-        <form id="registration-form" onsubmit="return false;">
+    <div id="div-form" class="add-section-content">
+        <form id="add-form" onsubmit="return false;">
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="book-name">Názov knihy</label>
@@ -86,6 +92,46 @@
                 </div>
             </div>
         </form>
+    </div>
+    <div id="main-table-div" class="table-responsive">
+        <table id="main-table" class="table">
+            <thead class="table-primary">
+            <tr>
+                <th>
+                    <div>
+                        Názov knihy
+                    </div>
+                </th>
+                <th>
+                    <div>
+                        ISBN
+                    </div>
+                </th>
+                <th id="sort-price" class="sortable">
+                    <div>
+                        Cena
+                        <div class="sort-arrows">
+                            <img src="resources/pictures/up-arrow.svg" width="9" height="9" alt="up-arrow">
+                            <img src="resources/pictures/down-arrow.svg" width="9" height="9" alt="down-arrow">
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div>
+                        Kategória
+                    </div>
+                </th>
+                <th>
+                    <div>
+                        Autor
+                    </div>
+                </th>
+            </tr>
+            </thead>
+            <tbody id="table-body">
+
+            </tbody>
+        </table>
     </div>
 </section>
 </body>

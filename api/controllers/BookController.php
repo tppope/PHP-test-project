@@ -42,7 +42,7 @@ class BookController extends DatabaseController
         $emptyValues = [];
 
         if (empty($name)) {
-            array_push($emptyValues, 'name');
+            array_push($emptyValues, 'book-name');
         }
 
         if (empty($isbn)) {

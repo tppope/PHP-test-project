@@ -5,7 +5,7 @@ class Book implements \JsonSerializable
 
     private string $isbn;
     private string $name;
-    private string $price;
+    private float $price;
     private string $authorName;
     private string $categoryName;
 

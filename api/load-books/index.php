@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once(__DIR__ . "/../../controllers/BookController.php");
+require_once(__DIR__ . "/../controllers/BookController.php");
 $categoryController = new BookController();
 try {
     if ($_SERVER["REQUEST_METHOD"] == 'GET')

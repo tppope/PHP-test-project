@@ -12,7 +12,7 @@ function showAddInfo(addInfo) {
 }
 
 
-function loadCategories(){
+function loadCategories() {
     let request = new Request('/api/load-categories/', {
         method: 'GET',
     });
@@ -25,7 +25,7 @@ function loadCategories(){
         });
 }
 
-function printCategories(categories){
+function printCategories(categories) {
     let select = document.getElementById("category");
     categories.map(category => {
         select.appendChild(createOptionCategory(category.id, category.name))
@@ -33,7 +33,7 @@ function printCategories(categories){
 
 }
 
-function loadBooks(){
+function loadBooks() {
     let request = new Request('/api/load-books/', {
         method: 'GET',
     });
@@ -47,7 +47,7 @@ function loadBooks(){
 }
 
 
-function printBooks(books){
+function printBooks(books) {
     let table = document.getElementById("table-body");
     books.map(book => {
         let tr = createTr();
@@ -60,17 +60,18 @@ function printBooks(books){
     })
 }
 
-function createTd(text){
+function createTd(text) {
     let td = document.createElement("td");
     $(td).text(text);
     return td;
 }
-function createTr(){
+
+function createTr() {
     return document.createElement("tr");
 }
 
 
-function createOptionCategory(id, name){
+function createOptionCategory(id, name) {
     let option = document.createElement("option");
     $(option).prop({
         value: id
@@ -79,49 +80,45 @@ function createOptionCategory(id, name){
     return option;
 }
 
-function checkSamePasswords() {
-    let password2 = $("#password-repeat");
-    if ($("#password").val() !== password2.val())
-        password2.get(0).setCustomValidity("Heslá sa musia zhodovať");
-    else
-        password2.get(0).setCustomValidity("");
+function removeIsInvalid(object) {
+    $(object).removeClass("is-invalid");
 }
 
-function removeIsInvalid(email) {
-    $(email).removeClass("is-invalid");
+function addIsInvalid(object) {
+    $(object).addClass("is-invalid");
 }
 
-function checkFormValidation(form) {
-    let inputs = $(form).find("input");
-    for (let i = 0; i < inputs.length; i++) {
-        if (!inputs.get(i).checkValidity())
-            return false;
-    }
-    return true;
-}
+function addBook() {
+    let form = document.getElementById("add-form");
+    let request = new Request('/api/add-book/', {
+        method: 'POST',
+        body: new FormData(form),
+    });
+    fetch(request)
+        .then(response => response.json())
+        .then(data => {
+            if (!data.error) {
+                showAddInfo('success')
 
-function submitRegistration() {
-    let form = document.getElementById("registration-form");
-    if (checkFormValidation(form)) {
-        let request = new Request('api/uzivatelia/registracia/', {
-            method: 'POST',
-            body: new FormData(form),
+            } else {
+                showAddInfo('failed')
+                if (data.emptyValues)
+                    printEmptyError(data.emptyValues);
+                else if (data.isbnError)
+                    printISBNError();
+            }
         });
-        fetch(request)
-            .then(response => response.json())
-            .then(data => {
-                let email = $("#email");
-                if (!data.error) {
-                    sessionStorage.setItem("regStatus", data.status);
-                    window.location.replace("index.html");
-                } else {
-                    if (data.errorCode === 1062)
-                        email.addClass("is-invalid");
-                    else {
-                        sessionStorage.setItem("regStatus", data.status);
-                        window.location.replace("index.html");
-                    }
-                }
-            });
-    }
+}
+
+function printEmptyError(emptyValues) {
+    $("#isbn-error").text("ISBN nemôže byť prázdne!");
+    emptyValues.map(emptyValue => {
+        addIsInvalid(document.getElementById(emptyValue))
+    })
+}
+
+function printISBNError() {
+    $("#isbn-error").text("Zadané ISBN už je v databáze!");
+    addIsInvalid(document.getElementById('isbn'))
+
 }

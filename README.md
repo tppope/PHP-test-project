@@ -1,4 +1,4 @@
-Zdockerizovaný testovací projekt
+# Zdockerizovaný testovací projekt
 
 spustenie:
 
